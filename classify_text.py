@@ -20,7 +20,7 @@ def create_feature_sets(labeled_sentences):
     return train_set, test_set
 
 #pull features
-def extremely_basic_feature(sentence):
+def basic_feature(sentence):
     return {'first_word': sentence[0]}
 
 #train classifier
