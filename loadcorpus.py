@@ -4,7 +4,7 @@ import nltk
 class Corpus(object):
 
     def __init__(self, data_root):
-        self.wordlists = nltk.corpus.PlaintextCorpusReader(data_root, '.*')
+        self.wordlists = nltk.corpus.PlaintextCorpusReader(data_root, '.*.txt')
 
     def documents(self):
         return self.wordlists.fileids()
@@ -27,9 +27,12 @@ class Corpus(object):
         sentences = []
         for file in self.wordlists.fileids():
             sentences.extend(self.tokenize_sentences(file))
-        for sent in sentences:
-            count += 1
-        return count
+        return len(sentences)
+
+    def number_of_sentences_file(self, filename):
+        sentences = []
+        sentences.extend(self.tokenize_sentences(filename))
+        print(len(sentences))
 
 
 
@@ -40,3 +43,4 @@ if __name__ == '__main__':
     print(corpus.tokenize_sentences('bookmark.txt'))
     print(corpus.longest_word('bookmark.txt'))
     print(corpus.number_of_sentences())
+    corpus.number_of_sentences_file('whoCanHelpMe.txt')
