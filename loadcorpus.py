@@ -22,6 +22,14 @@ class Corpus(object):
                     longest_word = w
         return longest_word
 
+    def number_of_sentences(self):
+        count = 0
+        sentences = []
+        for file in self.wordlists.fileids():
+            sentences.extend(self.tokenize_sentences(file))
+        for sent in sentences:
+            count += 1
+        return count
 
 
 
@@ -31,3 +39,4 @@ if __name__ == '__main__':
     print(corpus.documents())
     #print(corpus.tokenize_sentences('bookmark.txt'))
     print(corpus.longest_word('bookmark.txt'))
+    print(corpus.number_of_sentences())
