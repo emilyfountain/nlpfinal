@@ -37,6 +37,6 @@ class Corpus(object):
 if __name__ == '__main__':
     corpus = Corpus('/Users/emilyfountain/programs/nlpfinal/test_data')
     print(corpus.documents())
-    #print(corpus.tokenize_sentences('bookmark.txt'))
+    print(corpus.tokenize_sentences('bookmark.txt'))
     print(corpus.longest_word('bookmark.txt'))
     print(corpus.number_of_sentences())

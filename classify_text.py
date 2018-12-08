@@ -33,7 +33,9 @@ def evaluate_classifier(classifier, test_set):
     print(nltk.classify.accuracy(classifier, test_set))
 
 #run classifier
-
-
+#i put sentence here but this could be anything (text file, etc)
+def run_classifier(classifier, sentence):
+    classified = classifier.classify(basic_feature(sentence))
+    
 
 if __name__ == '__main__':
