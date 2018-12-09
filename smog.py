@@ -1,7 +1,19 @@
 import nltk
+import re
+import math
+import from feature_collector import get_syllables
 
-def run_smog():
-    asdfasdflkj
+
+def run_smog(full_text_tokenized):
+    PUNCTUATION = [",", ".", ":", ";", "!", "?"]
+    sentences = 0
+    syllables = 0
+    for sent in full_text_tokenized:
+        sentences += 1
+        s = [get_syllables(word) for word in sent if get_syllables(word)>2]
+        syllables += len(s)
+    return 1.0430*(math.sqrt(syllables*(30.0/sentences)))
+
 
 def run_ari(full_text_tokenized):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
