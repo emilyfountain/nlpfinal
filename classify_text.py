@@ -26,6 +26,8 @@ def create_feature_sets(labeled_sentences):
     return train_set, test_set
 
 #pull features
+#we also want features that span the whole document (probably), like
+#frequencies of certain words. lets figure out how to attack that problem.
 def basic_feature(sentence):
     return {'first_word': sentence[0]}
 
@@ -43,7 +45,3 @@ def evaluate_classifier(classifier, test_set):
 #...and actually probably should be a text file, not a sentence
 def run_classifier(classifier, sentence):
     classified = classifier.classify(basic_feature(sentence))
-
-
-#if __name__ == '__main__':
-    #labeled_data = create labeled data
