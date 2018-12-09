@@ -3,7 +3,6 @@ import re
 
 def get_syllables(word):
     vowel_groups = re.findall(r"[AEIOUYaeiouy]+", word)
-    print(vowel_groups)
     syllable_number = len(vowel_groups)
     if (re.search(r"[^aeiou]+e$", word)):
         syllable_number -= 1

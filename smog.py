@@ -1,7 +1,7 @@
 import nltk
 import re
 import math
-import from feature_collector import get_syllables
+from feature_collector import get_syllables
 
 
 def run_smog(full_text_tokenized):
@@ -26,12 +26,10 @@ def run_ari(full_text_tokenized):
             if (word not in PUNCTUATION):
                 words_in_sentences += 1
                 letters_in_words += (len(word))
-    # print(total_sentences)
-    # print(words_in_sentences)
-    # print(letters_in_words)
     average_words = words_in_sentences / total_sentences
     average_letters = letters_in_words / words_in_sentences
-    # print(average_words)
-    # print(average_letters)
     ar_index = (average_letters * 4.71) + (average_words * 0.5) - 21.43
     return ar_index
+
+def get_smog_ari_avg(full_text_tokenized):
+    return round((run_ari(full_text_tokenized) + run_smog(full_text_tokenized)) / 2)
