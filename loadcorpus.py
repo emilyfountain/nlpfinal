@@ -56,4 +56,4 @@ if __name__ == '__main__':
     classifier = classify_text.train_classifier(train_set)
     classify_text.evaluate_classifier(classifier, test_set)
 
-    print(smog.run_ari(corpus.tokenize_sentences('bookmark.txt')))
+    print(smog.run_ari(corpus.tokenize_sentences('bigDipper.txt')))
