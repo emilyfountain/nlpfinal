@@ -1,6 +1,7 @@
 
 import nltk
 import classify_text
+import smog
 
 class Corpus(object):
 
@@ -54,3 +55,5 @@ if __name__ == '__main__':
     train_set, test_set = classify_text.create_feature_sets(labeled_sentences)
     classifier = classify_text.train_classifier(train_set)
     classify_text.evaluate_classifier(classifier, test_set)
+
+    print(smog.run_ari(corpus.tokenize_sentences('bookmark.txt')))
