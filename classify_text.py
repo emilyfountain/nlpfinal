@@ -2,15 +2,21 @@
 import random
 import nltk
 
-# class Classify_Text(object):
-#
-#     def __init__(self):
+#tag document with whatever we need
+#or do it sentence by sentence...whichever!
+def tag_document():
+    asdfasdflkj
+
 
 #create labeled data
-def label_sentences(tagged_document):
-    ###should have the reading level below instead of the "0"
-    labeled_sentences = [(sentence, 0) for sentence in tagged_document]
+#this should iterate over ALL documents >:^)
+#and give back a huge list of all the sentences...
+#unless there's a better way to do it.
+def label_sentences(tagged_documents):
+    ###should have the given reading level below instead of the "0"
+    labeled_sentences = [(sentence, 0) for sentence in tagged_documents]
     random.shuffle(labeled_sentences)
+    return labeled_sentences
 
 #create feature sets
 def create_feature_sets(labeled_sentences):
@@ -34,8 +40,10 @@ def evaluate_classifier(classifier, test_set):
 
 #run classifier
 #i put sentence here but this could be anything (text file, etc)
+#...and actually probably should be a text file, not a sentence
 def run_classifier(classifier, sentence):
     classified = classifier.classify(basic_feature(sentence))
-    
 
-if __name__ == '__main__':
+
+#if __name__ == '__main__':
+    #labeled_data = create labeled data

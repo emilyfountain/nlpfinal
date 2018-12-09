@@ -1,5 +1,6 @@
 
 import nltk
+import classify_text
 
 class Corpus(object):
 
@@ -23,7 +24,6 @@ class Corpus(object):
         return longest_word
 
     def number_of_sentences(self):
-        count = 0
         sentences = []
         for file in self.wordlists.fileids():
             sentences.extend(self.tokenize_sentences(file))
@@ -38,9 +38,19 @@ class Corpus(object):
 
 
 if __name__ == '__main__':
+    #below: just playing around with the corpus
     corpus = Corpus('/Users/emilyfountain/programs/nlpfinal/test_data')
     print(corpus.documents())
     print(corpus.tokenize_sentences('bookmark.txt'))
     print(corpus.longest_word('bookmark.txt'))
     print(corpus.number_of_sentences())
     corpus.number_of_sentences_file('whoCanHelpMe.txt')
+
+    #below: runs classifier on one text file 'bookmark.txt'.
+    #runs successfully although obviously doesn't do the work we actually
+    #need it to yet.
+    labeled_sentences = classify_text.label_sentences(corpus.tokenize_sentences('bookmark.txt'))
+    print(labeled_sentences)
+    train_set, test_set = classify_text.create_feature_sets(labeled_sentences)
+    classifier = classify_text.train_classifier(train_set)
+    classify_text.evaluate_classifier(classifier, test_set)
