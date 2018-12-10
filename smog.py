@@ -38,7 +38,7 @@ def run_ari(full_text_tokenized):
 
 
 def get_smog_ari_avg(full_text_tokenized):
-    return round((run_ari(full_text_tokenized) + run_smog(full_text_tokenized)) / 2)
+    return round((run_ari(full_text_tokenized) + run_smog(full_text_tokenized)) / 2.0)
 
 
 def get_basic_index(full_text_tokenized):
@@ -46,10 +46,13 @@ def get_basic_index(full_text_tokenized):
     ari_smog_avg = get_smog_ari_avg(full_text_tokenized)
     if (ari_smog_avg > 0 and ari_smog_avg < 4):
         basic_index = "LEVEL_A"
-    elif (ari_smog_avg < 8):
+    elif (ari_smog_avg < 7):
         basic_index = "LEVEL_B"
-    elif (ari_smog_avg < 12):
+    elif (ari_smog_avg < 10):
         basic_index = "LEVEL_C"
-    elif (ari_smog_avg < 16):
+    elif (ari_smog_avg < 12):
         basic_index = "LEVEL_D"
+    elif (ari_smog_avg < 17):
+        basic_index = "LEVEL_E"
+    print(basic_index)
     return basic_index

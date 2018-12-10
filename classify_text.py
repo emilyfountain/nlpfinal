@@ -1,8 +1,5 @@
-import random
-import nltk
-import smog
-import loadcorpus
-import feature_collector
+import random, nltk, smog, loadcorpus, feature_collector
+
 
 #tag document with whatever we need
 #or do it sentence by sentence...whichever!
@@ -11,7 +8,7 @@ def tag_document():
 
 
 #create labeled data (with reading level attached)
-#currently uses my "basic index" (A, B, C, D), from easy to hard
+#change the smog analyzer to get a different result >:^)
 def label_document(document):
     labeled_document = (document, smog.get_basic_index(document))
     return labeled_document
@@ -30,7 +27,12 @@ def create_feature_sets(labeled_docs):
 
 #get features
 def get_features(full_text):
-    features = {'longest_word': full_text[-1][-1]}
+    features = {
+                'average_sent_length': feature_collector.average_sentence_length(full_text),
+                'longest_word': feature_collector.longest_word(full_text),
+                'number of unique words': feature_collector.find_unique_words(full_text)
+                }
+    print(features)
     return features
 
 
@@ -47,4 +49,4 @@ def evaluate_classifier(classifier, test_set):
 
 #run classifier
 def run_classifier(classifier, text_file):
-    classified = classifier.classify(basic_feature(text_file))
+    classified = classifier.classify(get_features(text_file))

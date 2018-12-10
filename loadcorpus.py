@@ -32,6 +32,7 @@ if __name__ == '__main__':
         next_document_labeled =        classify_text.label_document(corpus.tokenize_sentences(filename))
         labeled_documents.append(next_document_labeled)
     random.shuffle(labeled_documents)
+    
     train_set, test_set = classify_text.create_feature_sets(labeled_documents)
     classifier = classify_text.train_classifier(train_set)
     classify_text.evaluate_classifier(classifier, test_set)
