@@ -21,6 +21,7 @@ def create_feature_sets(labeled_docs):
     for item in labeled_docs:
         featuresets.append((get_features(item[0]), item[1]))
     size = int(len(featuresets) * 0.1)
+    print(size)
     train_set, test_set = featuresets[size:], featuresets[:size]
     return train_set, test_set
 
@@ -28,11 +29,14 @@ def create_feature_sets(labeled_docs):
 #get features
 def get_features(full_text):
     features = {
-                'average_sent_length': feature_collector.average_sentence_length(full_text),
+                'average sent length': feature_collector.average_sentence_length(full_text),
                 'longest_word': feature_collector.longest_word(full_text),
-                'number of unique words': feature_collector.find_unique_words(full_text)
+                'number of unique words': feature_collector.find_unique_words(full_text),
+                'number of unique words, systemized':
+                feature_collector.unique_words_system(full_text),
+                'avg sentence length, systemized': feature_collector.sentence_length_system(full_text)
                 }
-    print(features)
+    #print(features)
     return features
 
 

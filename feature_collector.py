@@ -12,6 +12,18 @@ def find_unique_words(document):
     return round(len(vocab) / total_words, 2)
 
 
+def unique_words_system(document):
+    unique_word_score = find_unique_words(document)
+    if (unique_word_score < 0.1):
+        return 1
+    elif (unique_word_score < 0.3):
+        return 2
+    elif (unique_word_score < 0.5):
+        return 3
+    else:
+        return 4
+
+
 def get_syllables(word):
     vowel_groups = re.findall(r"[AEIOUYaeiouy]+", word)
     syllable_number = len(vowel_groups)
@@ -35,6 +47,26 @@ def average_sentence_length(document):
         total_sentences = 1
     average_words = words_in_sentences / total_sentences
     return round(average_words)
+
+
+def sentence_length_system(document):
+    avg_length = average_sentence_length(document)
+    if (avg_length < 5):
+        return 1
+    elif(avg_length < 10):
+        return 2
+    elif(avg_length < 15):
+        return 3
+    elif(avg_length < 20):
+        return 4
+    elif(avg_length < 25):
+        return 5
+    elif(avg_length < 30):
+        return 6
+    elif(avg_length < 35):
+        return 7
+    else:
+        return 8
 
 
 def longest_word(document):
