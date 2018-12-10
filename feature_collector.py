@@ -9,8 +9,11 @@ def get_syllables(word):
     return syllable_number
 
 
-if __name__ == "__main__":
-    print(get_syllables("impotent"))
-    print(get_syllables("impoutent"))
-    print(get_syllables("irrigation"))
-    print(get_syllables("irrigatione"))
+def longest_word_length(document):
+    longest_word = ""
+    for d in document:
+        for s in d:
+            for w in s:
+                if len(w) > len(longest_word):
+                    longest_word = w
+    return len(longest_word)

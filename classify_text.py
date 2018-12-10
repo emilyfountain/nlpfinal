@@ -1,6 +1,8 @@
-
 import random
 import nltk
+import smog
+import loadcorpus
+import feature_collector
 
 #tag document with whatever we need
 #or do it sentence by sentence...whichever!
@@ -8,40 +10,41 @@ def tag_document():
     asdfasdflkj
 
 
-#create labeled data
-#this should iterate over ALL documents >:^)
-#and give back a huge list of all the sentences...
-#unless there's a better way to do it.
-def label_sentences(tagged_documents):
-    ###should have the given reading level below instead of the "0"
-    labeled_sentences = [(sentence, 0) for sentence in tagged_documents]
-    random.shuffle(labeled_sentences)
-    return labeled_sentences
+#create labeled data (with reading level attached)
+#currently uses my "basic index" (A, B, C, D), from easy to hard
+def label_document(document):
+    labeled_document = (document, smog.get_basic_index(document))
+    return labeled_document
+
 
 #create feature sets
-def create_feature_sets(labeled_sentences):
-    featuresets = [(basic_feature(sent), level) for (sent, level) in labeled_sentences]
+#labeled_docs is currently a list of lists(sentences), each sentence labeled
+def create_feature_sets(labeled_docs):
+    featuresets = []
+    for item in labeled_docs:
+        featuresets.append((get_features(item[0]), item[1]))
     size = int(len(featuresets) * 0.1)
     train_set, test_set = featuresets[size:], featuresets[:size]
     return train_set, test_set
 
-#pull features
-#we also want features that span the whole document (probably), like
-#frequencies of certain words. lets figure out how to attack that problem.
-def basic_feature(sentence):
-    return {'first_word': sentence[0]}
+
+#get features
+def get_features(full_text):
+    features = {'longest_word': full_text[-1][-1]}
+    return features
+
 
 #train classifier
 def train_classifier(train_set):
     classifier = nltk.NaiveBayesClassifier.train(train_set)
     return classifier
 
+
 #evaluate classifier
 def evaluate_classifier(classifier, test_set):
     print(nltk.classify.accuracy(classifier, test_set))
 
+
 #run classifier
-#i put sentence here but this could be anything (text file, etc)
-#...and actually probably should be a text file, not a sentence
-def run_classifier(classifier, sentence):
-    classified = classifier.classify(basic_feature(sentence))
+def run_classifier(classifier, text_file):
+    classified = classifier.classify(basic_feature(text_file))
