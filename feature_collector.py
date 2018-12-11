@@ -31,6 +31,24 @@ def get_syllables(word):
         syllable_number -= 1
     return syllable_number
 
+def rank_syllables(document):
+    syllables = 0
+    for sent in document:
+        for word in sent:
+            if word not in PUNCTUATION:
+                syllables_word = get_syllables(word)
+                if syllables_word < 2:
+                    syllables += 0
+                elif syllables_word == 3:
+                    sylables += 3
+                elif syllables_word == 4:
+                    sylables += 4
+                elif syllables_word == 5:
+                    syllables += 5
+                else:
+                    syllables += 6
+    return syllables
+            
 
 def average_sentence_length(document):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
