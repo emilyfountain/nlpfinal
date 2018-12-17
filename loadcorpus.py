@@ -27,6 +27,9 @@ class Corpus(object):
 if __name__ == '__main__':
     corpus = Corpus('/Users/emilyfountain/programs/nlpfinal/test_data')
 
+    print(len(corpus.documents()))
+    print("total documents^")
+
     labeled_documents = []
     for filename in corpus.documents():
         next_document_labeled =        classify_text.label_document(corpus.tokenize_sentences(filename))
