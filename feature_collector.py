@@ -52,7 +52,6 @@ def rank_syllables(document):
     return syllables
 
 
-
 def average_sentence_length(document):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     total_sentences = 0
