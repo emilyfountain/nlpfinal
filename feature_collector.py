@@ -1,5 +1,54 @@
 import nltk
 import re
+import operator
+
+def common_word_list():
+    PUNCTUATION = [",", ".", ":", ";", "!", "?"]
+    from nltk.corpus import stopwords
+    stop_words = set(stopwords.words('english'))
+    from nltk.corpus import brown
+    brown_sentences = brown.sents(categories='fiction')
+    brown_vocab = {}
+    for sent in brown_sentences:
+        for word in sent:
+            if word.lower() not in stop_words and word.lower() not in PUNCTUATION:
+                if (word.lower() not in brown_vocab):
+                    brown_vocab[word.lower()] = 1
+                else:
+                    brown_vocab[word.lower()] += 1
+    sorted_brown_words = sorted(brown_vocab.items(), key=operator.itemgetter(1))
+    most_common = [x[0] for x in sorted_brown_words[-500:]]
+    return most_common
+
+def find_uncommon_words(document, most_common):
+    PUNCTUATION = [",", ".", ":", ";", "!", "?"]
+    total_words = 0
+    uncommon_words = 0
+    for sent in document:
+        for word in sent:
+            if (word not in PUNCTUATION):
+                total_words += 1
+                if (word not in most_common):
+                    uncommon_words += 1
+    print(uncommon_words/total_words)
+    return round(uncommon_words / total_words)
+
+
+def find_uncommon_words_system(document):
+    uw_score = find_uncommon_words(document)
+    if uw_score > 70.0:
+        return 1
+    if uw_score > 75.0:
+        return 2
+    if uw_score > 80.0:
+        return 3
+    if uw_score > 85.0:
+        return 4
+    if uw_score > 90.0:
+        return 5
+    else:
+        return 6
+
 
 def find_unique_words(document):
     vocab = {}

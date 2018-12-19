@@ -3,14 +3,11 @@
 The Cathtain Reading Level Analyzer (alpha)
 
 loadcorpus.py is the driver.
+Run our program by typing "python3 loadcorpus.py" in your terminal window after confirming that the data root in the main method of loadcorpus is correct.
 
-- build it so that it only takes ~30 sentences for smog & for cathtain
 - write up annotation guidelines
-- annotate the data
 - add more data to certain areas
-- update spreadsheet to reflect current amnt of data
 - figure out how we want features to work (how to "smooth" the data)
-- most common words dictionary feature (emily do this)
 - entity/name amnt checker (emily)
 
 
