@@ -7,31 +7,32 @@ from feature_collector import get_syllables
 #takes texts as list of sentences
 #retuns the first 10 sentences, middle 10, and last 10
 #or less if there is not 30 sentences
-def text_exerpt(full_text_tokenized):
+def text_excerpt(full_text_tokenized):
     if len(full_text_tokenized) <= 30:
         print("Full text:\n")
-        print(' '.join(full_text_tokenized))
+        print(' '.join(list(full_text_tokenized)[0]))
         return full_text_tokenized
     else:
         mid_range = random.randint(11, len(full_text_tokenized)-20)
         first_10 = full_text_tokenized[0:10]
         middle_10 = full_text_tokenized[mid_range:mid_range+10]
         last_10 = full_text_tokenized[-10:]
-        print("First 10 sentences:\n")
-        print(' '.join(first_10))
-        print("Mid-sentences:\n")
-        print(' '.join(middle_10))
-        print("Last 10 sentences:\n")
-        print(' '.join(last_10))
+        #print formatting so it is easy to read string
+        first_10_text = [' '.join(i) for i in first_10]
+        middle_10_text= [' '.join(i) for i in middle_10]
+        last_10_text = [' '.join(i) for i in last_10]
+        print("First 10 sentences:\n" + ' '.join(first_10_text))
+        print("\nMid 10 sentences:\n" + ' '.join(middle_10_text))
+        print("\nLast 10 sentences:\n" + ' '.join(last_10_text))
+        #return tokenized sentences for use in SMOG test
         return list(first_10 + middle_10 + last_10)
-    
 
 #run smog test on result from text_excerpt to get 30 
 def run_smog(excerpt_length_30):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     sentences = 0
     syllables = 0
-    for sent in full_text_tokenized:
+    for sent in excerpt_length_30:
         sentences += 1
         s = [get_syllables(word) for word in sent if get_syllables(word)>2]
         syllables += len(s)
