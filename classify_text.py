@@ -10,8 +10,8 @@ def tag_document():
 
 #create labeled data (with reading level attached)
 #change the smog analyzer to get a different result >:^)
-def label_document(document):
-    labeled_document = (document, labels_annotation.get_label(document))
+def label_document(document, filename):
+    labeled_document = (document, labels_annotation.get_label(filename))
     return labeled_document
 
 

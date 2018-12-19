@@ -5,13 +5,14 @@ import labels
 from feature_collector import get_syllables
 
 #takes fileid and returns the label
-def get_label(document):
-    label = 0
+#fileid must be in the labeled and available!
+def get_label(filename):
+    filename = filename[10:]
     for i in labels.all_labels:
-        if i[0] == document:
-            label = i[1]
-    return label
-    
+        if filename == i[0] :
+            return i[1]
+    #return label
+
 #takes texts as list of sentences
 #retuns the first 10 sentences, middle 10, and last 10
 #or less if there is not 30 sentences
@@ -88,4 +89,3 @@ def get_basic_index(full_text_tokenized):
         basic_index = "LEVEL_E"
     print(basic_index)
     return basic_index
-
