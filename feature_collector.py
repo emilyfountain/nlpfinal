@@ -20,6 +20,7 @@ def common_word_list():
     most_common = [x[0] for x in sorted_brown_words[-500:]]
     return most_common
 
+
 def find_uncommon_words(document, most_common):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     total_words = 0
@@ -30,21 +31,21 @@ def find_uncommon_words(document, most_common):
                 total_words += 1
                 if (word not in most_common):
                     uncommon_words += 1
-    print(uncommon_words/total_words)
-    return round(uncommon_words / total_words)
+    print(round(uncommon_words/total_words, 2))
+    return round(uncommon_words / total_words, 2)
 
 
 def find_uncommon_words_system(document):
     uw_score = find_uncommon_words(document)
-    if uw_score > 70.0:
+    if uw_score < 0.70:
         return 1
-    if uw_score > 75.0:
+    if uw_score < 0.75:
         return 2
-    if uw_score > 80.0:
+    if uw_score < 0.80:
         return 3
-    if uw_score > 85.0:
+    if uw_score < 0.85:
         return 4
-    if uw_score > 90.0:
+    if uw_score < 0.90:
         return 5
     else:
         return 6
