@@ -25,7 +25,9 @@ class Corpus(object):
 
 
 if __name__ == '__main__':
-    corpus = Corpus('/Users/juliacathcart/Documents/Git/Github/nlpfinal-master')
+    #corpus = Corpus('/Users/juliacathcart/Documents/Git/Github/nlpfinal-master')
+
+    corpus = Corpus('/Users/emilyfountain/programs/nlpfinal/test_data')
 
 
     labeled_documents = []
