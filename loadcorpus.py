@@ -25,19 +25,16 @@ class Corpus(object):
 
 
 if __name__ == '__main__':
-    corpus = Corpus('/Users/emilyfountain/programs/nlpfinal/test_data')
-
-    print(len(corpus.documents()))
-    print("total documents^")
+    corpus = Corpus('/Users/juliacathcart/Documents/Git/Github/nlpfinal-master')
 
     labeled_documents = []
     for filename in corpus.documents():
-        next_document_labeled =        classify_text.label_document(corpus.tokenize_sentences(filename))
+        next_document_labeled = classify_text.label_document(corpus.tokenize_sentences(filename))
         labeled_documents.append(next_document_labeled)
     random.shuffle(labeled_documents)
-
+    
     train_set, test_set = classify_text.create_feature_sets(labeled_documents)
     classifier = classify_text.train_classifier(train_set)
     classify_text.evaluate_classifier(classifier, test_set)
 
-    #classifier.show_most_informative_features(10)
+    classifier.show_most_informative_features(10)

@@ -11,7 +11,7 @@ def tag_document():
 #create labeled data (with reading level attached)
 #change the smog analyzer to get a different result >:^)
 def label_document(document):
-    labeled_document = (document, labels_annotation.get_basic_index(document))
+    labeled_document = (document, labels_annotation.get_label(document))
     return labeled_document
 
 
@@ -22,8 +22,8 @@ def create_feature_sets(labeled_docs):
     for item in labeled_docs:
         featuresets.append((get_features(item[0]), item[1]))
     size = int(len(featuresets) * 0.1)
-    print(size)
-    print("documents in test set^")
+    #print(size)
+    #print("documents in test set^")
     train_set, test_set = featuresets[size:], featuresets[:size]
     return train_set, test_set
 
