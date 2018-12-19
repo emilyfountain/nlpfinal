@@ -27,7 +27,7 @@ def text_exerpt(full_text_tokenized):
     
 
 #run smog test on result from text_excerpt to get 30 
-def run_smog(excerpt+length_30):
+def run_smog(excerpt_length_30):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     sentences = 0
     syllables = 0
