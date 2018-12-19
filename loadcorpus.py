@@ -27,9 +27,10 @@ class Corpus(object):
 if __name__ == '__main__':
     corpus = Corpus('/Users/juliacathcart/Documents/Git/Github/nlpfinal-master')
 
+   
     labeled_documents = []
     for filename in corpus.documents():
-        next_document_labeled = classify_text.label_document(corpus.tokenize_sentences(filename))
+        next_document_labeled = classify_text.label_document(corpus.tokenize_sentences(filename), filename)
         labeled_documents.append(next_document_labeled)
     random.shuffle(labeled_documents)
     
