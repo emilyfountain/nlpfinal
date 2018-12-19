@@ -10,7 +10,7 @@ def tag_document():
 #create labeled data (with reading level attached)
 #change the smog analyzer to get a different result >:^)
 def label_document(document):
-    labeled_document = (document, smog.get_basic_index(document))
+    labeled_document = (document, labels_annotation.get_basic_index(document))
     return labeled_document
 
 
