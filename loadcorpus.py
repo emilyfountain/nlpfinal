@@ -1,6 +1,6 @@
 import nltk
 import classify_text
-import smog
+import labels_annotation
 import random
 
 class Corpus(object):
