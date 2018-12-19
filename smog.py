@@ -1,10 +1,33 @@
 import nltk
 import re
 import math
+import random
 from feature_collector import get_syllables
 
+#takes texts as list of sentences
+#retuns the first 10 sentences, middle 10, and last 10
+#or less if there is not 30 sentences
+def text_exerpt(full_text_tokenized):
+    if len(full_text_tokenized) <= 30:
+        print("Full text:\n")
+        print(' '.join(full_text_tokenized))
+        return full_text_tokenized
+    else:
+        mid_range = random.randint(11, len(full_text_tokenized)-20)
+        first_10 = full_text_tokenized[0:10]
+        middle_10 = full_text_tokenized[mid_range:mid_range+10]
+        last_10 = full_text_tokenized[-10:]
+        print("First 10 sentences:\n")
+        print(' '.join(first_10))
+        print("Mid-sentences:\n")
+        print(' '.join(middle_10))
+        print("Last 10 sentences:\n")
+        print(' '.join(last_10))
+        return list(first_10 + middle_10 + last_10)
+    
 
-def run_smog(full_text_tokenized):
+#run smog test on result from text_excerpt to get 30 
+def run_smog(excerpt+length_30):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     sentences = 0
     syllables = 0
@@ -56,3 +79,6 @@ def get_basic_index(full_text_tokenized):
         basic_index = "LEVEL_E"
     print(basic_index)
     return basic_index
+
+
+
