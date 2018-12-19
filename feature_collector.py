@@ -35,8 +35,8 @@ def find_uncommon_words(document, most_common):
     return round(uncommon_words / total_words, 2)
 
 
-def find_uncommon_words_system(document):
-    uw_score = find_uncommon_words(document)
+def find_uncommon_words_system(document, most_common):
+    uw_score = find_uncommon_words(document, most_common)
     if uw_score < 0.70:
         return 1
     if uw_score < 0.75:

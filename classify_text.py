@@ -37,7 +37,7 @@ def get_features(full_text):
                 feature_collector.unique_words_system(full_text),
                 'avg sentence length, systemized': feature_collector.sentence_length_system(full_text),
                 'syllables': feature_collector.rank_syllables(full_text),
-                'uncommon words': feature_collector.find_uncommon_words(full_text, COMMON_WORDS)
+                'uncommon words': feature_collector.find_uncommon_words_system(full_text, COMMON_WORDS)
                 }
     # print(features)
     return features
