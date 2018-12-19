@@ -1,4 +1,4 @@
-import random, nltk, smog, loadcorpus, feature_collector
+import random, nltk, labels_annotation, loadcorpus, feature_collector
 
 
 #tag document with whatever we need
