@@ -13,17 +13,21 @@ loadcorpus.py
 
 This is our driver. It loads the corpus and controls the creation of the classifier.
 
+
 classify_text.py
 
 This file holds all the methods for creating and working with the classifier.
+
 
 feature_collector.py
 
 This file holds all the methods which extract features for use in our featuresets.
 
+
 labels_annotation.py
 
 This file labels the data, and holds methods that calculate SMOG and ARI reading levels.
+
 
 labels.py
 
