@@ -12,11 +12,13 @@ def create_feature_sets(labeled_docs):
     featuresets = []
     for item in labeled_docs:
         featuresets.append((get_features(item[0]), item[1]))
+        #featuresets.append((get_features_smog_ari(item[0]), item[1]))
     size = int(len(featuresets) * 0.1)
     #print(size)
     #print("documents in test set^")
     train_set, test_set = featuresets[size:], featuresets[:size]
     return train_set, test_set
+
 
 #get features
 #these are the features we use in our classifier.
@@ -34,6 +36,7 @@ def get_features(full_text):
                 }
     # print(features)
     return features
+
 
 #get features
 #these are the SMOG and ARI reading level analyzers. They perform significantly

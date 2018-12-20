@@ -5,8 +5,6 @@ import operator
 #Creates a list of common words from the Brown corpus fiction category.
 def common_word_list():
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
-    from nltk.corpus import stopwords
-    stop_words = set(stopwords.words('english'))
     from nltk.corpus import brown
     brown_sentences = brown.sents(categories='fiction')
     brown_vocab = {}
