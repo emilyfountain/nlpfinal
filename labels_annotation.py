@@ -4,15 +4,17 @@ import math, random
 import labels
 from feature_collector import get_syllables
 
+
 #takes fileid and returns the label
-#fileid must be in the labeled and available in test_data/labels.py!
+#fileid must be labeled and available in test_data/labels.py!
 def get_label(filename):
-    filename = filename[10:]
+    #filename = filename[10:]
     for i in labels.all_labels:
         if filename == i[0] :
             return i[1]
-    #return label
-    
+    #returns label
+
+
 #takes texts as list of sentences
 #retuns the first 10 sentences, middle 10, and last 10
 #or less if there is not 30 sentences
@@ -36,7 +38,8 @@ def text_excerpt(full_text_tokenized):
         #return tokenized sentences for use in SMOG test
         return list(first_10 + middle_10 + last_10)
 
-#run smog test on result from text_excerpt to get 30 
+
+#run smog test on result from text_excerpt to get 30
 def run_smog(excerpt_length_30):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     sentences = 0
@@ -74,6 +77,8 @@ def get_smog_ari_avg(full_text_tokenized):
     return round((run_ari(full_text_tokenized) + run_smog(full_text_tokenized)) / 2.0)
 
 
+#the basic index was what we used to test our classifier and code in general
+#before we finished annotating. this method is not used in our current code.
 def get_basic_index(full_text_tokenized):
     basic_index = "LEVEL_X"
     ari_smog_avg = get_smog_ari_avg(full_text_tokenized)
@@ -89,4 +94,3 @@ def get_basic_index(full_text_tokenized):
         basic_index = "LEVEL_E"
     print(basic_index)
     return basic_index
-

@@ -2,6 +2,7 @@ import nltk
 import re
 import operator
 
+#Creates a list of common words from the Brown corpus fiction category.
 def common_word_list():
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     from nltk.corpus import stopwords
@@ -21,6 +22,7 @@ def common_word_list():
     return most_common
 
 
+#Returns the average number of "uncommon" words in the text.
 def find_uncommon_words(document, most_common):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     total_words = 0
@@ -35,6 +37,8 @@ def find_uncommon_words(document, most_common):
     return round(uncommon_words / total_words, 2)
 
 
+#The systematized version of the uncommon words method. Bundles similar scores
+#into the same bundle.
 def find_uncommon_words_system(document, most_common):
     uw_score = find_uncommon_words(document, most_common)
     if uw_score < 0.70:
@@ -51,6 +55,7 @@ def find_uncommon_words_system(document, most_common):
         return 6
 
 
+#Finds the average number of unique words in a text.
 def find_unique_words(document):
     vocab = {}
     total_words = 0
@@ -62,6 +67,7 @@ def find_unique_words(document):
     return round(len(vocab) / total_words, 2)
 
 
+#The systematized version of the unique_words method.
 def unique_words_system(document):
     unique_word_score = find_unique_words(document)
     if (unique_word_score < 0.1):
@@ -73,6 +79,7 @@ def unique_words_system(document):
     else:
         return 4
 
+
 def proper_nouns_total(document):
     prop_nouns = 0
     for i in document:
@@ -81,6 +88,7 @@ def proper_nouns_total(document):
             if i[1] == 'NNP':
                 prop_nouns += 1
         return prop_nouns
+
 
 def unique_verbs_total(document):
     verbs = []
@@ -91,6 +99,10 @@ def unique_verbs_total(document):
                 verbs.append(i[0])
     return len(set(verbs))
 
+
+#Returns the number of syllables in a given word.
+#This method obviously miscounts many words that have irregular
+#or uncommon syllable shapes.
 def get_syllables(word):
     vowel_groups = re.findall(r"[AEIOUYaeiouy]+", word)
     syllable_number = len(vowel_groups)
@@ -98,7 +110,8 @@ def get_syllables(word):
         syllable_number -= 1
     return syllable_number
 
-
+#This method gives a rough average of number of syllables to number of words
+#in a text.
 def rank_syllables(document):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     syllables = 0
@@ -121,8 +134,22 @@ def rank_syllables(document):
     return round(syllables / total_words, 2)
 
 
+#This method is the systematized version of find_syllables.
+def rank_syllables_systemized(document):
+    syllable_ratio = rank_syllables(document)
+    if syllable_ratio < 0.03:
+        return 1
+    elif syllable_ratio < 0.06:
+        return 2
+    elif syllable_ratio < 0.09:
+        return 3
+    elif syllable_ratio < 0.12:
+        return 4
+    else:
+        return 5
 
 
+#This method returns the average sentences length of a document.
 def average_sentence_length(document):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     total_sentences = 0
@@ -132,14 +159,13 @@ def average_sentence_length(document):
         for word in sent:
             if (word not in PUNCTUATION):
                 words_in_sentences += 1
-    #i got a divide by zero error: fixed it like this for now, but might be
-    #indicative of a larger problem
     if (total_sentences == 0):
         total_sentences = 1
     average_words = words_in_sentences / total_sentences
     return round(average_words)
 
 
+#This method is the systematized version of the average_sentence_length method.
 def sentence_length_system(document):
     avg_length = average_sentence_length(document)
     if (avg_length < 5):
@@ -160,6 +186,8 @@ def sentence_length_system(document):
         return 8
 
 
+#longest_word was a run-through method used mostly to debug the classifier.
+#It is extremely uninformative and is not used in our final classifier.
 def longest_word(document):
     longest_word_len = 0
     for sent in document:
