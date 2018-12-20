@@ -73,6 +73,23 @@ def unique_words_system(document):
     else:
         return 4
 
+def proper_nouns_total(document):
+    prop_nouns = 0
+    for i in document:
+        tagged_sentence = nltk.pos_tag(i)
+        for i in tagged_sentence:
+            if i[1] == 'NNP':
+                prop_nouns += 1
+        return prop_nouns
+
+def unique_verbs_total(document):
+    verbs = []
+    for i in document:
+        tagged_sentence = nltk.pos_tag(i)
+        for i in tagged_sentence:
+            if i[1] == 'VBP' or i[1] =='VBD' or i[1] =='VBZ':
+                verbs.append(i[0])
+    return len(set(verbs))
 
 def get_syllables(word):
     vowel_groups = re.findall(r"[AEIOUYaeiouy]+", word)

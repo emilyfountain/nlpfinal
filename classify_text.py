@@ -42,6 +42,12 @@ def get_features(full_text):
     # print(features)
     return features
 
+def get_features_smog_ari(full_text):
+    features = {
+                'smog': labels_annotation.run_smog(labels_annotation.text_excerpt(full_text)),
+                'ari': labels_annotation.run_ari(full_text)
+                }
+    return features
 
 def train_classifier(train_set):
     classifier = nltk.NaiveBayesClassifier.train(train_set)
