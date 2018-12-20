@@ -73,7 +73,7 @@ def unique_words_system(document):
     else:
         return 4
 
- def proper_nouns_total(document):
+def proper_nouns_total(document):
     prop_nouns = 0
     for i in document:
         tagged_sentence = nltk.pos_tag(i)
