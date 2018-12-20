@@ -11,7 +11,7 @@ def common_word_list():
     brown_vocab = {}
     for sent in brown_sentences:
         for word in sent:
-            if word.lower() not in stop_words and word.lower() not in PUNCTUATION:
+            if word.lower() not in PUNCTUATION:
                 if (word.lower() not in brown_vocab):
                     brown_vocab[word.lower()] = 1
                 else:
@@ -31,7 +31,7 @@ def find_uncommon_words(document, most_common):
                 total_words += 1
                 if (word not in most_common):
                     uncommon_words += 1
-    print(round(uncommon_words/total_words, 2))
+    #print(round(uncommon_words/total_words, 2))
     return round(uncommon_words / total_words, 2)
 
 
@@ -85,21 +85,25 @@ def get_syllables(word):
 def rank_syllables(document):
     PUNCTUATION = [",", ".", ":", ";", "!", "?"]
     syllables = 0
+    total_words = 0
     for sent in document:
         for word in sent:
             if word not in PUNCTUATION:
+                total_words += 1
                 syllables_word = get_syllables(word)
                 if syllables_word <= 2:
                     syllables += 0
                 elif syllables_word == 3:
-                    syllables += 3
+                    syllables += 1
                 elif syllables_word == 4:
-                    syllables += 4
+                    syllables += 2
                 elif syllables_word == 5:
-                    syllables += 5
+                    syllables += 4
                 else:
-                    syllables += 6
-    return syllables
+                    syllables += 5
+    return round(syllables / total_words, 2)
+
+
 
 
 def average_sentence_length(document):

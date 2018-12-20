@@ -5,6 +5,8 @@ The Cathtain Reading Level Analyzer (alpha)
 loadcorpus.py is the driver.
 Run our program by typing "python3 loadcorpus.py" in your terminal window after confirming that the data root in the main method of loadcorpus is correct. You will want the data root to point to where our corpus ("test_data") is stored on your computer.
 
+Note that as of now, our tagger and our classifier take quite a few minutes to run--please bear with us during the wait.
+
 - write up annotation guidelines
 - add more data to certain areas
 - figure out how we want features to work (how to "smooth" the data)
